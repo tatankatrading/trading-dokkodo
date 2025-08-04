@@ -147,19 +147,30 @@
         /* Print styles */
         @media print {
             body {
-                print-color-adjust: exact;
-                -webkit-print-color-adjust: exact;
-                background: white !important;
+                margin: 0;
+                padding: 0;
             }
-            
+        
+            .title {
+                page-break-after: avoid;
+                break-after: avoid;
+                margin-bottom: 0.5rem;
+            }
+        
+            .intro, .precept {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+        
             .container {
-                height: auto;
-            }
-            
-            .precept {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 1rem;
+                page-break-inside: avoid;
                 break-inside: avoid;
             }
         }
+
 
         /* Ensure content fits on one page */
         @media screen and (max-height: 800px) {
