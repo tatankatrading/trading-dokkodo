@@ -68,7 +68,7 @@
         }
 
         .intro {
-            /* Remove fixed height */
+            height: 4rem;
             margin-bottom: 0.4rem;
             padding: 0.5rem;
             background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
@@ -96,7 +96,7 @@
         }
 
         .precept {
-            /* Remove fixed height */
+            height: 4rem;
             margin-bottom: 0.4rem;
             padding: 0.5rem 0.5rem 0.75rem 0.5rem;
             background: #f8f9fa;
@@ -147,30 +147,19 @@
         /* Print styles */
         @media print {
             body {
-                margin: 0;
-                padding: 0;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+                background: white !important;
             }
-        
-            .title {
-                page-break-after: avoid;
-                break-after: avoid;
-                margin-bottom: 0.5rem;
-            }
-        
-            .intro, .precept {
-                page-break-inside: avoid;
-                break-inside: avoid;
-            }
-        
+            
             .container {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 1rem;
-                page-break-inside: avoid;
+                height: auto;
+            }
+            
+            .precept {
                 break-inside: avoid;
             }
         }
-
 
         /* Ensure content fits on one page */
         @media screen and (max-height: 800px) {
