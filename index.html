@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Dokkodo for Futures Trading</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%2338a169' d='M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14 14-6.3 14-14S23.7 2 16 2z'/%3E%3Cpath fill='white' d='M12 10h2v8l6 4-1 1.7-7-4.7V10z'/%3E%3Cpath fill='%234fd1c7' d='M8 16h6l2-4 4 8 2-2h6' stroke='white' stroke-width='1.5' fill='none'/%3E%3C/svg%3E">
     <style>
         * {
             margin: 0;
@@ -12,356 +13,347 @@
             box-sizing: border-box;
         }
 
+        @page {
+            size: A4;
+            margin: 0.5in;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 11px;
+            line-height: 1.3;
             color: #2d3748;
-            background: linear-gradient(135deg, #e6fffa 0%, #f0fff4 50%, #fef5e7 100%);
-            min-height: 100vh;
-            padding: 2rem 1rem;
+            background: white;
+            padding: 0;
+            margin: 0;
+            max-width: 100%;
+            height: 100vh;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            max-width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
             background: linear-gradient(135deg, #38a169 0%, #4fd1c7 100%);
             color: white;
-            padding: 3rem 2rem;
+            padding: 1rem;
             text-align: center;
-            position: relative;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 1;
+            margin-bottom: 1rem;
+            border-radius: 8px;
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             opacity: 0.9;
             font-style: italic;
-            font-weight: 300;
         }
 
         .content {
-            padding: 3rem 2rem;
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 0 0.5rem;
+            align-content: start;
+        }
+
+        .intro {
+            height: 4.4rem;
+            margin-bottom: 0.6rem;
+            padding: 0.5rem 0.6rem 0.7rem 0.6rem;
+            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+            border-radius: 6px;
+            border-left: 3px solid #4fd1c7;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .intro-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.3rem;
+            text-align: center;
+        }
+
+        .intro-text {
+            font-size: 0.65rem;
+            line-height: 1.3;
+            color: #4a5568;
+            text-align: center;
+            font-style: italic;
         }
 
         .precept {
-            margin-bottom: 2.5rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            border-left: 4px solid #68d391;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            height: 4.4rem;
+            margin-bottom: 0.6rem;
+            padding: 0.5rem 0.6rem 0.7rem 0.6rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #68d391;
+            page-break-inside: avoid;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .precept:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-left-color: #38a169;
+        .precept-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.4rem;
         }
 
         .precept-number {
-            display: inline-block;
-            width: 35px;
-            height: 35px;
+            display: inline-flex;
+            width: 20px;
+            height: 20px;
             background: linear-gradient(135deg, #68d391, #38a169);
             color: white;
             border-radius: 50%;
-            text-align: center;
-            line-height: 35px;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
-            font-size: 0.9rem;
-            margin-right: 1rem;
-            float: left;
-            margin-top: 0.2rem;
+            font-size: 0.7rem;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
         }
 
         .precept-title {
-            font-size: 1.3rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: #2d3748;
-            margin-bottom: 0.8rem;
-            margin-left: 50px;
+            line-height: 1.2;
         }
 
         .precept-text {
-            font-size: 1rem;
-            line-height: 1.7;
+            font-size: 0.65rem;
+            line-height: 1.3;
             color: #4a5568;
-            margin-left: 50px;
-            clear: both;
+            margin-left: 25px;
+            margin-top: 0.2rem;
         }
 
-        .summary {
-            background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
-            color: white;
-            padding: 2rem;
-            margin-top: 3rem;
-            border-radius: 15px;
-            text-align: center;
-        }
-
-        .summary h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .summary-item {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 1rem;
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-        }
-
-        .summary-item strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        @media (max-width: 768px) {
+        /* Print styles */
+        @media print {
             body {
-                padding: 1rem 0.5rem;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+                background: white !important;
             }
             
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .header {
-                padding: 2rem 1rem;
-            }
-            
-            .content {
-                padding: 2rem 1rem;
+            .container {
+                height: auto;
             }
             
             .precept {
-                padding: 1rem;
-            }
-            
-            .precept-title {
-                font-size: 1.1rem;
-                margin-left: 45px;
-            }
-            
-            .precept-text {
-                margin-left: 45px;
-                font-size: 0.95rem;
+                break-inside: avoid;
             }
         }
 
-        .divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #68d391, transparent);
-            margin: 2rem 0;
-            border-radius: 1px;
+        /* Ensure content fits on one page */
+        @media screen and (max-height: 800px) {
+            body {
+                font-size: 10px;
+            }
+            
+            .precept-text {
+                font-size: 0.65rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="header-content">
-                <h1>The Dokkodo</h1>
-                <p class="subtitle">21 Precepts for the Way of the Trader</p>
-            </div>
+                            <h1>The Dokkōdō for Futures Tradign</h1>
+            <p class="subtitle">21 Precepts for the Way of the Trader</p>
         </div>
 
         <div class="content">
-            <div class="precept">
-                <div class="precept-number">1</div>
-                <h3 class="precept-title">Accept market conditions as they are</h3>
-                <p class="precept-text">Accept market conditions as they are, not as you wish them to be. Don't fight trends, don't argue with price action, and don't impose your bias on the market.</p>
-            </div>
+            <div>
+                <div class="intro">
+                    <h3 class="intro-title">The Way of the Trader</h3>
+                    <p class="intro-text">Adapted from Miyamoto Musashi's Dokkōdō (The Way of Walking Alone). These 21 precepts guide traders toward mastery through self-reliance, emotional detachment, and commitment to proven principles.</p>
+                </div>
 
-            <div class="precept">
-                <div class="precept-number">2</div>
-                <h3 class="precept-title">Do not trade for pleasure alone</h3>
-                <p class="precept-text">Don't trade for the thrill or excitement. Avoid revenge trading or gambling behaviors. Trade only when your edge is present, not for entertainment.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">3</div>
-                <h3 class="precept-title">Never depend on partial analysis</h3>
-                <p class="precept-text">Never base trades on hunches, emotions, or incomplete analysis. Wait for your full trading setup to materialize before entering positions.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">4</div>
-                <h3 class="precept-title">Think humbly of your abilities and deeply of the markets</h3>
-                <p class="precept-text">Stay humble about your abilities while deeply studying market dynamics, economic factors, and global events that drive futures prices.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">5</div>
-                <h3 class="precept-title">Be detached from trading outcomes</h3>
-                <p class="precept-text">Release attachment to specific outcomes. Don't fall in love with positions or become emotionally invested in being right. Focus on process over profits.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">6</div>
-                <h3 class="precept-title">Do not regret past trades</h3>
-                <p class="precept-text">Don't dwell on past losses or missed opportunities. Each trade is independent. Learn from mistakes but don't let regret cloud future decision-making.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">7</div>
-                <h3 class="precept-title">Never envy other traders</h3>
-                <p class="precept-text">Don't envy other traders' success or compare your performance to others. Focus on your own consistent improvement and edge development.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">8</div>
-                <h3 class="precept-title">Never mourn the end of winning streaks</h3>
-                <p class="precept-text">Don't become attached to winning streaks, favorite strategies, or market conditions. Adapt when circumstances change.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">9</div>
-                <h3 class="precept-title">Take responsibility for all trading outcomes</h3>
-                <p class="precept-text">Don't blame the market, brokers, news, or external factors for losses. Take full responsibility for your trading decisions and outcomes.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">10</div>
-                <h3 class="precept-title">Do not let greed or fear guide you</h3>
-                <p class="precept-text">Don't let greed drive position sizing or hold winners too long hoping for more. Don't let fear prevent you from taking valid setups.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">11</div>
-                <h3 class="precept-title">Have no directional bias</h3>
-                <p class="precept-text">Be willing to trade long or short based on what the market presents. Don't favor certain commodities or directions based on personal bias.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">12</div>
-                <h3 class="precept-title">Adapt to any market environment</h3>
-                <p class="precept-text">Adapt your trading to any market environment - trending, ranging, volatile, or quiet. Don't pine for "better" market conditions.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">13</div>
-                <h3 class="precept-title">Do not become addicted to big wins</h3>
-                <p class="precept-text">Don't become addicted to the "high" of big wins. Maintain the same discipline and process whether you're winning or losing.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">14</div>
-                <h3 class="precept-title">Cut what no longer serves you</h3>
-                <p class="precept-text">Cut losing positions quickly. Don't hold onto outdated strategies, indicators, or beliefs that no longer serve your trading.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">15</div>
-                <h3 class="precept-title">Think independently of the crowd</h3>
-                <p class="precept-text">Think independently. Don't follow crowd sentiment, popular trading gurus, or conventional wisdom without testing it yourself.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">16</div>
-                <h3 class="precept-title">Master few tools rather than collect many</h3>
-                <p class="precept-text">Don't over-complicate your trading with too many indicators, strategies, or tools. Master a few reliable methods rather than collecting many.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">17</div>
-                <h3 class="precept-title">Do not fear necessary losses</h3>
-                <p class="precept-text">Don't fear losses or drawdowns if they're part of your tested system. Accept that some losses are inevitable and necessary for long-term success.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">18</div>
-                <h3 class="precept-title">Build wealth consistently over time</h3>
-                <p class="precept-text">Don't try to make one trade solve all your financial problems. Build wealth consistently over time rather than seeking home runs.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">19</div>
-                <h3 class="precept-title">Respect the market but depend on yourself</h3>
-                <p class="precept-text">Respect the market and acknowledge forces beyond your control, but don't rely on luck, hope, or external salvation. Depend on your skill and preparation.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">20</div>
-                <h3 class="precept-title">Preserve your trading principles above all</h3>
-                <p class="precept-text">You may accept losses and drawdowns, but never compromise your trading principles, risk management rules, or integrity.</p>
-            </div>
-
-            <div class="precept">
-                <div class="precept-number">21</div>
-                <h3 class="precept-title">Never abandon your proven system</h3>
-                <p class="precept-text">Stay committed to your proven trading method and discipline. Don't abandon your system during difficult periods or chase new strategies constantly.</p>
-            </div>
-
-            <div class="summary">
-                <h2>The Essence of Trading Mastery</h2>
-                <div class="divider"></div>
-                <div class="summary-grid">
-                    <div class="summary-item">
-                        <strong>Emotional Detachment</strong>
-                        From outcomes while maintaining disciplined execution
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">1</div>
+                        <h3 class="precept-title">Accept market conditions as they are</h3>
                     </div>
-                    <div class="summary-item">
-                        <strong>Market Acceptance</strong>
-                        Of reality without fighting or hoping
+                    <p class="precept-text">Accept market conditions as they are, not as you wish them to be. Don't fight trends or impose bias on the market.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">2</div>
+                        <h3 class="precept-title">Do not trade for pleasure alone</h3>
                     </div>
-                    <div class="summary-item">
-                        <strong>Self-Reliance</strong>
-                        Through independent analysis and decision-making
+                    <p class="precept-text">Don't trade for thrills. Avoid revenge trading. Trade only when your edge is present.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">3</div>
+                        <h3 class="precept-title">Never depend on partial analysis</h3>
                     </div>
-                    <div class="summary-item">
-                        <strong>Simplicity</strong>
-                        In approach rather than complexity
+                    <p class="precept-text">Never base trades on hunches or incomplete analysis. Wait for your full setup to materialize.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">4</div>
+                        <h3 class="precept-title">Think humbly, study deeply</h3>
                     </div>
-                    <div class="summary-item">
-                        <strong>Consistency</strong>
-                        In following proven methods
+                    <p class="precept-text">Stay humble about your abilities while deeply studying market dynamics and global events.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">5</div>
+                        <h3 class="precept-title">Be detached from outcomes</h3>
                     </div>
-                    <div class="summary-item">
-                        <strong>Responsibility</strong>
-                        For all trading decisions and outcomes
+                    <p class="precept-text">Release attachment to specific outcomes. Don't fall in love with positions. Focus on process over profits.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">6</div>
+                        <h3 class="precept-title">Do not regret past trades</h3>
                     </div>
+                    <p class="precept-text">Don't dwell on losses or missed opportunities. Each trade is independent. Learn but don't let regret cloud judgment.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">7</div>
+                        <h3 class="precept-title">Never envy other traders</h3>
+                    </div>
+                    <p class="precept-text">Don't envy others' success or compare performance. Focus on your own consistent improvement.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">8</div>
+                        <h3 class="precept-title">Never mourn winning streaks</h3>
+                    </div>
+                    <p class="precept-text">Don't become attached to winning streaks or strategies. Adapt when circumstances change.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">9</div>
+                        <h3 class="precept-title">Take full responsibility</h3>
+                    </div>
+                    <p class="precept-text">Don't blame markets, brokers, or external factors. Take full responsibility for all trading decisions.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">10</div>
+                        <h3 class="precept-title">Resist greed and fear</h3>
+                    </div>
+                    <p class="precept-text">Don't let greed drive position sizing or fear prevent valid setups. Trade with discipline.</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">11</div>
+                        <h3 class="precept-title">Have no directional bias</h3>
+                    </div>
+                    <p class="precept-text">Trade long or short based on what the market presents. Don't favor directions based on personal bias.</p>
+                </div>
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">12</div>
+                        <h3 class="precept-title">Adapt to any environment</h3>
+                    </div>
+                    <p class="precept-text">Adapt to trending, ranging, volatile, or quiet markets. Don't pine for "better" conditions.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">13</div>
+                        <h3 class="precept-title">Avoid addiction to big wins</h3>
+                    </div>
+                    <p class="precept-text">Don't become addicted to the high of big wins. Maintain discipline whether winning or losing.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">14</div>
+                        <h3 class="precept-title">Cut what doesn't serve you</h3>
+                    </div>
+                    <p class="precept-text">Cut losing positions quickly. Don't hold onto outdated strategies or beliefs.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">15</div>
+                        <h3 class="precept-title">Think independently</h3>
+                    </div>
+                    <p class="precept-text">Don't follow crowd sentiment or gurus. Test conventional wisdom yourself before accepting it.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">16</div>
+                        <h3 class="precept-title">Master few tools</h3>
+                    </div>
+                    <p class="precept-text">Don't over-complicate with too many indicators. Master a few reliable methods rather than collecting many.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">17</div>
+                        <h3 class="precept-title">Accept necessary losses</h3>
+                    </div>
+                    <p class="precept-text">Don't fear losses if they're part of your tested system. Some losses are inevitable and necessary.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">18</div>
+                        <h3 class="precept-title">Build wealth consistently</h3>
+                    </div>
+                    <p class="precept-text">Don't try to solve financial problems with one trade. Build wealth consistently over time.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">19</div>
+                        <h3 class="precept-title">Respect markets, depend on yourself</h3>
+                    </div>
+                    <p class="precept-text">Respect forces beyond your control, but don't rely on luck or hope. Depend on skill and preparation.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">20</div>
+                        <h3 class="precept-title">Preserve your principles</h3>
+                    </div>
+                    <p class="precept-text">Accept losses and drawdowns, but never compromise trading principles or risk management rules.</p>
+                </div>
+
+                <div class="precept">
+                    <div class="precept-header">
+                        <div class="precept-number">21</div>
+                        <h3 class="precept-title">Never abandon your system</h3>
+                    </div>
+                    <p class="precept-text">Stay committed to your proven method. Don't abandon your system during difficult periods.</p>
                 </div>
             </div>
         </div>
